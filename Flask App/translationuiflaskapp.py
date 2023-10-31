@@ -4,7 +4,7 @@ from config import OPENAI_API_KEY
 import openai
 
 # Set up Flask
-app = Flask(__name__, template_folder='/Users/profielddev/Desktop/profield/chypro/Flask App/template')
+app = Flask(__name__, template_folder='/Users/profielddev/Desktop/profield/Work/chypro/Flask App/template')
 
 # Set OpenAI API key from the config file
 openai.api_key = OPENAI_API_KEY
