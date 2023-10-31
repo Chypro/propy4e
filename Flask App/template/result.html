@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Translator</title>
+</head>
+<body>
+    <h1>Translate a Document</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="docx_file">
+        <button type="submit">Translate</button>
+    </form>
+
+    <!-- Add this section for displaying the translated text -->
+    <div>
+        <h2>Translated Text</h2>
+        <p>{{ translated_text }}</p>
+    </div>
+</body>
+</html>

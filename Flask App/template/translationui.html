@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document Translator</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .upload-block, .output-block {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #888888;
+            display: inline-block;
+            width: 45%;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .upload-block input[type="file"] {
+            display: block;
+            margin: 10px auto;
+        }
+
+        .upload-block button[type="submit"] {
+            background-color: #008CBA;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .upload-block button[type="submit"]:hover {
+            background-color: #005F80;
+        }
+    </style>
+</head>
+<body>
+    <h1>Translate a Document</h1>
+    <div class="container">
+        <!-- Block for uploading a file -->
+        <div class="upload-block">
+            <h2>Upload a Document</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <input type="file" name="docx_file">
+                <button type="submit">Translate</button>
+            </form>
+        </div>
+        <!-- Block for displaying the translated text -->
+        <div class="output-block">
+            <h2>Translated Text</h2>
+            <!-- Display the translated text here -->
+            <p>{{ translated_text }}</p>
+        </div>
+    </div>
+</body>
+</html>
