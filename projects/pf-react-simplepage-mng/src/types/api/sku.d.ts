@@ -1,0 +1,90 @@
+export type GetSkuDetailResponse = {
+  data: Product;
+  result: 'success';
+};
+
+export type Product = {
+  id: string | null | null;
+  cd: string | null;
+  acpt_status: any[];
+  name: string | null;
+  series: string | null;
+  name_en: string | null;
+  name_kana: string | null;
+  brand: string | null;
+  mk_hinban: string | null;
+  maker: any;
+  supplier: any;
+  m_price: number;
+  jan: string | null;
+  note: string | null;
+  labels: string | null;
+  discontinued: string | null;
+  per_unit_v: any;
+  tax: string | null;
+  url: string | null;
+  product_classification: {
+    cd: string | null;
+    name: string | null;
+    is_deleted: string | null;
+    created_by: string | null;
+    updated_by: string | null;
+  };
+  category_tree: any[];
+  img: string | null;
+  parent: {
+    id: string | null;
+    cd: string | null;
+    acpt_status: any[];
+    name: string | null;
+    series: string | null;
+    name_en: string | null;
+    name_kana: string | null;
+    brand: string | null;
+    mk_hinban: string | null;
+    maker: any;
+    supplier: any;
+    m_price: number | null;
+    jan: string | null;
+    note: string | null;
+    labels: string | null;
+    discontinued: string | null;
+    per_unit_v: any;
+    tax: string | null;
+    url: string | null;
+    product_classification: {
+      cd: string | null;
+      name: string | null;
+      is_deleted: string | null;
+      created_by: string | null;
+      updated_by: string | null;
+    };
+    category_tree: any[];
+    img: string | null;
+    parent: string | null;
+  };
+  acceptance_date: string | null;
+  acceptance_user: any;
+  acceptance_note: string | null;
+  attributes: Attribute[];
+};
+
+export type Attribute = {
+  id: number;
+  attribute: string | null;
+  is_deleted: string | null;
+  is_fixed: string | null;
+  is_common: string | null;
+  is_with_unit: string | null;
+  is_private: string | null;
+  order: number;
+  name: string | null;
+  alternative_name: string | null;
+  control_type: string | null;
+  not_null: string | null;
+  max_length: number;
+  select_list: string | null;
+  default_value: string | null;
+  unit: string | null;
+  value: string | null;
+};
