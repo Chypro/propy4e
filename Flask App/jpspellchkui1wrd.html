@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+    <div>
+        <textarea id="inputText" rows="10" cols="50" placeholder="Type or paste your text here"></textarea>
+        <button onclick="checkSpelling()">Check Spelling</button>
+    </div>
+    <div>
+        <p>Corrected Text:</p>
+        <div id="outputText"></div>
+    </div>
+    <script>
+        function checkSpelling() {
+            const inputText = document.getElementById("inputText").value;
+            const words = inputText.split(/\s+/);
+            const outputText = document.getElementById("outputText");
+            
+            let i = 0;
+            
+            const interval = setInterval(function () {
+                if (i < words.length) {
+                    outputText.innerHTML += words[i] + ' ';
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000); // Adjust the interval duration as needed (in milliseconds)
+        }
+    </script>
+</body>
+</html>

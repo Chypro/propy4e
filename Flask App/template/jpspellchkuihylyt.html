@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Japanese Spell Checker</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            background-color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .upload-block, .output-block {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .output-block textarea {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none;
+        }
+
+        .upload-block textarea {
+            width: 100%;
+            height: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none;
+        }
+
+        #check-button {
+            background-color: #4285f4;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .loading {
+            display: none;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Japanese Spell Checker</h1>
+    <div class="container">
+        <!-- Block for entering text -->
+        <div class="upload-block">
+            <h2>Enter Text</h2>
+            <form method="POST" id="spellcheck-form">
+                <textarea name="text" rows="10" cols="40" id="text-input" style="resize: none;"></textarea>
+                <button type="submit" id="check-button">Check Spelling and Grammar Error</button>
+                <div class="loading">Checking...</div>
+            </form>
+        </div>
+            
+        <!-- Block for corrected text -->
+        <div class="output-block">
+            <h2>Corrected Text</h2>
+            <div id="corrected-text" style="height: 200px; border: 1px solid #ccc; border-radius: 5px; padding: 10px; resize: none; overflow: auto;"></div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#spellcheck-form').submit(function (event) {
+                event.preventDefault();
+    
+                var text = $('#text-input').val();
+                $('#check-button').prop('disabled', true); // Disable the button during checking
+                $('.loading').show(); // Show the loading indicator
+    
+                $.ajax({
+                    type: 'POST',
+                    url: '/',
+                    data: { text: text },
+                    success: function (response) {
+                        var correctedText = response.corrected_text;
+                        var highlightedText = highlightDifferences(text, correctedText);
+                        $('#corrected-text').html(highlightedText);
+                        $('#check-button').prop('disabled', false); // Re-enable the button
+                        $('.loading').hide(); // Hide the loading indicator
+                    }
+                });
+            });
+            
+            function highlightDifferences(originalText, correctedText) {
+                var originalWords = originalText.split(/\s+/);
+                var correctedWords = correctedText.split(/\s+/);
+                var highlightedText = '';
+                for (var i = 0; i < originalWords.length; i++) {
+                    if (originalWords[i] !== correctedWords[i]) {
+                        highlightedText += '<span class="highlight">' + correctedWords[i] + '</span> ';
+                    } else {
+                        highlightedText += correctedWords[i] + ' ';
+                    }
+                }
+                return highlightedText;
+            }
+        });
+    </script>
+</body>
+</html>

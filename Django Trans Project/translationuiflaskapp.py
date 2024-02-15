@@ -4,7 +4,7 @@ from config import OPENAI_API_KEY
 import openai
 
 # Set up Flask
-app = Flask(__name__, template_folder='template')
+app = Flask(__name__, template_folder='/Users/profielddev/Desktop/profield/Work/chypro/Django Trans Project/template')
 
 # Set OpenAI API key from the config file
 openai.api_key = OPENAI_API_KEY
@@ -23,7 +23,7 @@ def translate_word_document(docx_file):
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=f"Translate the following Japanese text to English: '{input_text}'",
-        max_tokens=1000  # Adjust token limit as needed; initially 50
+        max_tokens=200  # Adjust token limit as needed; initially 50
     )
 
     # Extract the translated text from the API response
